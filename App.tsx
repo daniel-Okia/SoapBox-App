@@ -110,7 +110,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[430px] mx-auto h-screen relative bg-background-light dark:bg-background-dark border-x border-white/5 overflow-hidden shadow-2xl flex flex-col">
+    <div className="max-w-[430px] mx-auto h-dvh relative bg-background-light dark:bg-background-dark border-x border-white/5 overflow-hidden shadow-2xl flex flex-col">
       {/* Status Bar Mock */}
       <div className="h-10 px-8 flex justify-between items-center bg-transparent shrink-0">
         <span className="text-sm font-bold">9:41</span>

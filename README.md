@@ -1,20 +1,24 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# SoapBox App
 
-# Run and deploy your AI Studio app
+A mobile-first faith community app built with React, TypeScript, and Tailwind CSS.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1mgbuqY7dQ7-jVZ1d4mI6KQMo4R7m0O-A
+- **Home** — Feed, check-in, trending, engagement leaderboard, post composer
+- **Connect** — Communities, events, forums, messages, people
+- **Worship** — S.O.A.P. journaling, Bible reading, prayer wall, audio, saved items
+- **Serve** — Dashboard, volunteer opportunities, applications
+- **Profile** — User profile, candles system, settings
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev
+```
 
+Set your `GEMINI_API_KEY` in `.env.local` for AI features.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Tech Stack
+
+React 19 · TypeScript · Vite · Tailwind CSS

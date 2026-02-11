@@ -110,7 +110,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[430px] mx-auto min-h-screen relative bg-background-light dark:bg-background-dark border-x border-white/5 overflow-hidden shadow-2xl flex flex-col">
+    <div className="max-w-[430px] mx-auto h-screen relative bg-background-light dark:bg-background-dark border-x border-white/5 overflow-hidden shadow-2xl flex flex-col">
       {/* Status Bar Mock */}
       <div className="h-10 px-8 flex justify-between items-center bg-transparent shrink-0">
         <span className="text-sm font-bold">9:41</span>
@@ -134,31 +134,30 @@ const App: React.FC = () => {
       </header>
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto hide-scrollbar pb-24">
+      <div className="flex-1 overflow-y-auto hide-scrollbar relative">
         {renderPage()}
+
+        {/* FAB — only on Home, inside the scrollable area */}
+        {currentPage === Page.HOME && !showComposer && (
+          <button
+            onClick={() => setShowComposer(true)}
+            className="sticky bottom-4 float-right mr-4 w-14 h-14 bg-primary/80 backdrop-blur-md shadow-lg shadow-primary/15 rounded-full flex items-center justify-center text-white z-40 active:scale-90 transition-all hover:bg-primary/90"
+          >
+            <span className="material-icons-round text-2xl">add</span>
+          </button>
+        )}
       </div>
 
-      {/* FAB — only on Home, inside the container */}
-      {currentPage === Page.HOME && !showComposer && (
-        <button
-          onClick={() => setShowComposer(true)}
-          className="absolute bottom-24 right-4 w-14 h-14 bg-primary/80 backdrop-blur-md shadow-lg shadow-primary/15 rounded-full flex items-center justify-center text-white z-40 active:scale-90 transition-all hover:bg-primary/90"
-        >
-          <span className="material-icons-round text-2xl">add</span>
-        </button>
-      )}
-
       {/* Bottom Tab Bar Navigation */}
-      <nav className="absolute bottom-0 left-0 right-0 h-20 bg-background-dark/95 backdrop-blur-xl border-t border-white/5 px-6 flex justify-between items-center z-50">
+      <nav className="shrink-0 h-20 bg-background-dark border-t border-white/5 px-6 flex justify-between items-center z-50 relative">
         <TabButton icon="home" label="Home" isActive={currentPage === Page.HOME} onClick={() => setCurrentPage(Page.HOME)} />
         <TabButton icon="groups" label="Connect" isActive={currentPage === Page.CONNECT} onClick={() => setCurrentPage(Page.CONNECT)} />
         <TabButton icon="auto_awesome" label="Worship" isActive={currentPage === Page.WORSHIP} onClick={() => setCurrentPage(Page.WORSHIP)} />
         <TabButton icon="volunteer_activism" label="Serve" isActive={currentPage === Page.SERVE} onClick={() => setCurrentPage(Page.SERVE)} />
         <TabButton icon="person" label="Profile" isActive={currentPage === Page.PROFILE} onClick={() => setCurrentPage(Page.PROFILE)} />
+        {/* Home Indicator */}
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-slate-500/20 rounded-full"></div>
       </nav>
-
-      {/* Home Indicator */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-slate-500/20 rounded-full z-50"></div>
 
       {/* ── Menu Drawer Overlay ── */}
       {menuOpen && (

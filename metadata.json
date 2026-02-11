@@ -1,0 +1,8 @@
+{
+  "name": "SoapBox Community",
+  "description": "A spiritual community platform for connection, worship, and growth, featuring AI-powered journaling, sermon outlining, and communal prayer walls.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

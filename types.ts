@@ -6,7 +6,7 @@ export enum Page {
   SERVE = 'serve',
   GIVE = 'give',
   STUDIO = 'studio',
-  SOUL = 'soul',
+  PROFILE = 'profile',
   INSIGHTS = 'insights'
 }
 
@@ -38,4 +38,55 @@ export interface Event {
   location: string;
   category: string;
   image: string;
+}
+
+// Check-in system
+export type CheckInType = 'Sunday Service' | 'Daily Devotional' | 'Prayer Time' | 'Spiritual Check-In';
+
+export interface MoodOption {
+  id: number;
+  emoji: string;
+  name: string;
+}
+
+// Trending
+export interface TrendingItem {
+  id: number;
+  title: string;
+  content: string;
+  author: string;
+  authorAvatar?: string;
+  type: 'discussion' | 'prayer' | 'announcement' | 'general';
+  engagement: {
+    likes: number;
+    comments: number;
+    shares: number;
+    trendingScore: number;
+  };
+  timeAgo: string;
+}
+
+// Leaderboard
+export interface LeaderboardEntry {
+  rank: number;
+  id: string;
+  name: string;
+  avatar: string;
+  score: number;
+  title: string;
+}
+
+// Post types
+export type PostType = 'general' | 'discussion' | 'prayer' | 'announcement' | 'event' | 'soap';
+
+export interface EnhancedPost extends Post {
+  postType: PostType;
+  isLiked: boolean;
+  isPraying: boolean;
+  isAmened: boolean;
+  reactions: {
+    like: number;
+    pray: number;
+    amen: number;
+  };
 }

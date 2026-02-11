@@ -1,11 +1,21 @@
 
 import { GoogleGenAI, Modality } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+let ai: GoogleGenAI | null = null;
+
+function getAI(): GoogleGenAI | null {
+  if (ai) return ai;
+  const key = process.env.API_KEY;
+  if (!key) return null;
+  ai = new GoogleGenAI({ apiKey: key });
+  return ai;
+}
 
 export const getSpiritualReflection = async (verse: string) => {
   try {
-    const response = await ai.models.generateContent({
+    const client = getAI();
+    if (!client) return "The Word of God is always a lamp to our feet. Take a moment to be still and listen to His voice today.";
+    const response = await client.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: `Provide a 3-sentence spiritual reflection for the following Bible verse: "${verse}". Focus on encouragement and daily application.`,
       config: {
@@ -22,7 +32,9 @@ export const getSpiritualReflection = async (verse: string) => {
 
 export const generateSermonOutline = async (topic: string) => {
   try {
-    const response = await ai.models.generateContent({
+    const client = getAI();
+    if (!client) return "Error generating outline. Please configure your API key and try again.";
+    const response = await client.models.generateContent({
       model: 'gemini-3-pro-preview',
       contents: `Create a structured sermon outline for the topic: "${topic}". Include a hook, 3 main biblical points with scripture references, and a call to action.`,
       config: {
@@ -39,7 +51,9 @@ export const generateSermonOutline = async (topic: string) => {
 
 export const generateVisualAsset = async (prompt: string) => {
   try {
-    const response = await ai.models.generateContent({
+    const client = getAI();
+    if (!client) return null;
+    const response = await client.models.generateContent({
       model: 'gemini-2.5-flash-image',
       contents: {
         parts: [{ text: `A high-quality, aesthetic social media post for a church community. Style: Minimalist, spiritual, high-end photography. Content: ${prompt}` }],
@@ -62,7 +76,9 @@ export const generateVisualAsset = async (prompt: string) => {
 };
 
 export const startLivePrayerSession = (callbacks: any) => {
-  return ai.live.connect({
+  const client = getAI();
+  if (!client) return Promise.reject(new Error("API key not configured"));
+  return client.live.connect({
     model: 'gemini-2.5-flash-native-audio-preview-12-2025',
     callbacks,
     config: {

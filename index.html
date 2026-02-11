@@ -16,10 +16,10 @@
           colors: {
             "primary": "#db2979",
             "background-light": "#f8f6f7",
-            "background-dark": "#160b10",
-            "surface-dark": "#25161c",
-            "neutral-dark": "#3d2630",
-            "card-dark": "#1a0d13",
+            "background-dark": "#111113",
+            "surface-dark": "#1c1c1f",
+            "neutral-dark": "#2a2a2e",
+            "card-dark": "#161618",
             "gold-accent": "#facc15"
           },
           fontFamily: {
@@ -41,34 +41,44 @@
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .ambient-glow {
-      background: radial-gradient(circle at center, rgba(219, 41, 121, 0.08) 0%, transparent 70%);
+      background: radial-gradient(circle at center, rgba(219, 41, 121, 0.04) 0%, transparent 70%);
     }
     .glass {
-      background: rgba(219, 41, 121, 0.05);
+      background: rgba(219, 41, 121, 0.03);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(219, 41, 121, 0.15);
+      border: 1px solid rgba(219, 41, 121, 0.08);
     }
     .ios-shadow {
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
     .candle-glow {
-      box-shadow: 0 0 20px rgba(219, 41, 121, 0.4);
+      box-shadow: 0 0 20px rgba(219, 41, 121, 0.25);
     }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(100%); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseSoft {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+    .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+    .animate-slide-up { animation: slideUp 0.3s ease-out; }
+    .animate-slide-in { animation: slideIn 0.25s ease-out; }
+    .animate-pulse-soft { animation: pulseSoft 2s ease-in-out infinite; }
   </style>
-<script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "recharts": "https://esm.sh/recharts@^3.7.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
-  }
-}
-</script>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display">
   <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>

@@ -111,26 +111,21 @@ const App: React.FC = () => {
 
   return (
     <div className="max-w-[430px] mx-auto h-dvh relative bg-background-light dark:bg-background-dark border-x border-white/5 overflow-hidden shadow-2xl flex flex-col">
-      {/* Status Bar Mock */}
-      <div className="h-10 px-8 flex justify-between items-center bg-transparent shrink-0">
-        <span className="text-sm font-bold">9:41</span>
-        <div className="flex gap-1.5 items-center">
-          <span className="material-icons-round text-[14px]">signal_cellular_alt</span>
-          <span className="material-icons-round text-[14px]">wifi</span>
-          <span className="material-icons-round text-[14px]">battery_full</span>
-        </div>
-      </div>
-
       {/* Global Header */}
       <header className="px-4 py-2.5 flex items-center justify-between bg-background-dark/80 backdrop-blur-md z-40 border-b border-white/5 shrink-0">
         <button onClick={() => setMenuOpen(true)} className="p-1.5 -ml-1">
           <span className="material-icons-round text-slate-300">menu</span>
         </button>
         <span className="text-base font-bold tracking-tight">{PAGE_TITLES[currentPage]}</span>
-        <button className="p-1.5 -mr-1 relative">
-          <span className="material-icons-round text-slate-300">notifications</span>
-          <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
-        </button>
+        <div className="flex items-center gap-1">
+          <button className="p-1.5">
+            <span className="material-icons-round text-slate-300">search</span>
+          </button>
+          <button className="p-1.5 -mr-1 relative">
+            <span className="material-icons-round text-slate-300">notifications</span>
+            <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+          </button>
+        </div>
       </header>
 
       {/* Main Content Area */}
